@@ -2,13 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk-stretch
+      - image: circleci/openjdk:8-jdk
     working_directory: ~/circleci-demo-java-spring
     steps:
       - checkout
       - run:
-          name: junit
-          command: sh build.sh
+          name: run_build
+          command: sh run_build.sh
   # EC2にSSH接続し、デプロイを実行
   deploy:
     machine:
