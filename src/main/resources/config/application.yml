@@ -1,0 +1,61 @@
+# Tomcat Setting
+server:
+  servlet:
+    context-path: /sample
+  port: ${server.port}
+  tomcat:
+    use-relative-redirects: true
+    remote-ip-header: x-forwarded-for
+    protocol-header: x-forwarded-proto
+
+# DB
+spring:
+  datasource:
+    #In-memory DB
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: ${spring.datasource.url}
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    initialization-mode: never
+  session:
+    store-type: none
+#  redis:
+#    host: ${spring.redis.host}
+#    password: ${spring.redis.password}
+#    port: 6379
+  thymeleaf:
+    cache: false
+    mode: HTML
+# JPA
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
+# log
+logging:
+  level: 
+    org.springframework.web: info
+    org.hibernate: info
+
+# Spring Actuator Setting
+# healthチェック
+# curl -X GET http://localhost:8090/sample/actuator/health | jq
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+# Shutdown
+# curl -X POST http://localhost:8090/sample/actuator/shutdown | jq
+  endpoint:
+    shutdown:
+      enabled: true
+  health:
+    diskspace:
+      enabled: true
+    db:
+      enabled: true
+    redis: 
+      enabled: true
+security:
+  ignore-spring-security-ant-pattern: /img/**, /css/**, /js/**, /webjars/**,/h2-console/**,/actuator/**

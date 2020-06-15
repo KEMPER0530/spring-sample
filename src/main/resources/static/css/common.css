@@ -1,0 +1,39 @@
+
+a {
+	color: #000000;
+    text-decoration:none;
+}
+
+a:link {
+    text-decoration:none;
+}
+
+a:visited {
+    text-decoration:none;
+}
+a:hover {
+    text-decoration:none;
+}
+
+.error-message {
+    color:red;
+    font-weight:bold;
+}
+
+#header {
+/*     background-color:#F98FA2; */
+    margin-bottom:40px;
+}
+
+#footer {
+/*     background-color:#F98FA2; */
+    margin-top:30px;
+    padding:20px 5px;
+}
+
+#footer li {
+    display:table-cell;
+    padding-left:30px;
+}
+
+

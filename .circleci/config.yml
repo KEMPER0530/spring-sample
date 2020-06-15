@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+    working_directory: ~/circleci-demo-java-spring
+    steps:
+      - checkout
+      - run:
+          name: junit
+          command: sh build.sh
+  # EC2にSSH接続し、デプロイを実行
+  deploy:
+    machine:
+      image: circleci/classic:edge
+    steps:
+      - checkout
+      # CircleCIに登録した秘密鍵を呼び出す。
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      #- deploy:
+      #    requires:
+      # build ジョブに依存してるので、先に build ジョブを実行しろ！
+      #     - build
+      # master ブランチに push された場合のみ deploy
+      #   filters:
+      #     branches:
+      #       only: master
