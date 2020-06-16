@@ -16,16 +16,20 @@ jobs:
     steps:
       - checkout
       # CircleCIに登録した秘密鍵を呼び出す。
+      - add_ssh_keys:
+          fingerprints:
+            - "46:4c:fd:fd:5f:a4:25:e4:a1:0e:be:a6:18:d5:98:32"
+      - run:
+          name: circleci to EC2 deploy
+          command: ssh ${USER_NAME}@${HOST_NAME} 'cd /work/docker-portfolio/spring-sample && git pull origin master && cd /work/docker-portfolio/ && docker stop akazawa_spring && docker rm akazawa_spring && docker rmi -f docker-portfolio_springapp openjdk && docker-compose up -d'
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - build
-      #- deploy:
-      #    requires:
-      # build ジョブに依存してるので、先に build ジョブを実行しろ！
-      #     - build
-      # master ブランチに push された場合のみ deploy
-      #   filters:
-      #     branches:
-      #       only: master
+      - deploy:
+          requires:
+           - build
+         filters:
+           branches:
+             only: master

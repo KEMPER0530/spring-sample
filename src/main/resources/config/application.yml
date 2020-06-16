@@ -2,7 +2,7 @@
 server:
   servlet:
     context-path: /sample
-  port: ${server.port}
+  port: ${PORT}
   tomcat:
     use-relative-redirects: true
     remote-ip-header: x-forwarded-for
@@ -13,16 +13,16 @@ spring:
   datasource:
     #In-memory DB
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: ${spring.datasource.url}
-    username: ${spring.datasource.username}
-    password: ${spring.datasource.password}
+    url: ${URL}
+    username: ${USERNAME}
+    password: ${PASSWORD}
     initialization-mode: never
   session:
     store-type: none
 #  redis:
-#    host: ${spring.redis.host}
-#    password: ${spring.redis.password}
-#    port: 6379
+#    host: ${REDIS_HOST}
+#    password: ${REDIS_PASSWORD}
+#    port: ${REDIS_PORT}
   thymeleaf:
     cache: false
     mode: HTML
@@ -33,7 +33,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL57InnoDBDialect
 # log
 logging:
-  level: 
+  level:
     org.springframework.web: info
     org.hibernate: info
 
@@ -55,7 +55,7 @@ management:
       enabled: true
     db:
       enabled: true
-    redis: 
+    redis:
       enabled: true
 security:
   ignore-spring-security-ant-pattern: /img/**, /css/**, /js/**, /webjars/**,/h2-console/**,/actuator/**
