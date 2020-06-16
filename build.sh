@@ -6,10 +6,10 @@ if [ "$1" = "" ]
 then
 #  ./gradlew build -x test -x checkstyleMain -x checkstyleTest -x spotbugsMain -x spotbugsTest -x javadocAllProjects
 #  ./gradlew build
-  ./gradlew build test
+  ./gradlew build -x test
 else
 #  ./gradlew checkstyleMain checkstyleTest spotbugsMain spotbugsTest
-  ./gradlew build -x test
+  ./gradlew build test
 fi
 
 if [ $? -ne 0 ]; then

@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: run_build
-          command: sh run_build.sh
+          command: sh run_build.sh 1
   # EC2にSSH接続し、デプロイを実行
   deploy:
     machine:
@@ -21,7 +21,7 @@ jobs:
             - "46:4c:fd:fd:5f:a4:25:e4:a1:0e:be:a6:18:d5:98:32"
       - run:
           name: circleci to EC2 deploy
-          command: ssh ${USER_NAME}@${HOST_NAME} 'cd /work/docker-portfolio/spring-sample && git pull origin master && sh run_build.sh 1 && cd /work/docker-portfolio/ && docker stop akazawa_spring && docker rm akazawa_spring && docker rmi -f docker-portfolio_springapp openjdk && docker-compose up -d'
+          command: ssh ${USER_NAME}@${HOST_NAME} 'cd /work/docker-portfolio/spring-sample && git pull origin master && sh run_build.sh && cd /work/docker-portfolio/ && docker stop akazawa_spring && docker rm akazawa_spring && docker rmi -f docker-portfolio_springapp openjdk && docker-compose up -d'
       - run:
           name: actuator
           command: curl -X GET https://kemper0530.com/sample/actuator/health
