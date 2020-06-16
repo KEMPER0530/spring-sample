@@ -5,6 +5,7 @@
 /release
 /bin
 .DS_Store
+./src/main/resources/_application.properties_
 
 ### STS ###
 .apt_generated
