@@ -8,7 +8,8 @@ then
 #  ./gradlew build
   ./gradlew build test
 else
-  ./gradlew checkstyleMain checkstyleTest spotbugsMain spotbugsTest
+#  ./gradlew checkstyleMain checkstyleTest spotbugsMain spotbugsTest
+  ./gradlew build -x test
 fi
 
 if [ $? -ne 0 ]; then
