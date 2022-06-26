@@ -6,6 +6,7 @@
 /bin
 .DS_Store
 ./src/main/resources/_application.properties_
+/h2db
 
 ### STS ###
 .apt_generated

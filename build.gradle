@@ -32,7 +32,7 @@ apply plugin: 'propdeps-maven'      // Gradle maven pluginを使う場合
 apply plugin: 'propdeps-idea'       // IntelliJ IDEAを使う場合
 apply plugin: 'propdeps-eclipse'    // Eclipseを使う場合
 
-mainClassName = 'info.akazawa.sample.SpringBootTemplateApplication'
+mainClassName = 'info.pkg.sample.SpringBootTemplateApplication'
 
 //version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8

@@ -2,7 +2,8 @@
 server:
   servlet:
     context-path: /sample
-  port: ${PORT}
+  #port: ${PORT}
+  port: 8080
   tomcat:
     use-relative-redirects: true
     remote-ip-header: x-forwarded-for
@@ -10,23 +11,30 @@ server:
 
 # DB
 spring:
+  h2:
+    console:
+      enabled: true
   datasource:
     #In-memory DB
-    driverClassName: com.mysql.cj.jdbc.Driver
-    url: ${URL}
-    username: ${USERNAME}
-    password: ${PASSWORD}
-    initialization-mode: never
+    #driverClassName: com.mysql.cj.jdbc.Driver
+    driverClassName: org.h2.Driver
+    # url: ${URL}
+    # username: ${USERNAME}
+    # password: ${PASSWORD}
+    url: jdbc:h2:./h2db/sampledb
+    username: username
+    password: password
+    initialization-mode: always
   session:
     store-type: none
-#  redis:
-#    host: ${REDIS_HOST}
-#    password: ${REDIS_PASSWORD}
-#    port: ${REDIS_PORT}
+  #  redis:
+  #    host: ${REDIS_HOST}
+  #    password: ${REDIS_PASSWORD}
+  #    port: ${REDIS_PORT}
   thymeleaf:
     cache: false
     mode: HTML
-# JPA
+  # JPA
   jpa:
     show-sql: true
     hibernate.ddl-auto: none
@@ -45,8 +53,8 @@ management:
     web:
       exposure:
         include: "*"
-# Shutdown
-# curl -X POST http://localhost:8090/sample/actuator/shutdown | jq
+  # Shutdown
+  # curl -X POST http://localhost:8090/sample/actuator/shutdown | jq
   endpoint:
     shutdown:
       enabled: true
